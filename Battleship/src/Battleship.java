@@ -3,15 +3,15 @@ import java.util.Scanner;
 import java.util.Random;
 
 public class Battleship {
-    private static char[][] grid = new char[10][10];
+    private char[][] grid = new char[10][10];
     private static final int NUMBER_SHIPS = 5;
     private static Scanner input = new Scanner(System.in);
     private static Random randomNumber = new Random(System.currentTimeMillis());
-    private static int user_ships_remaining = 5;
-    private static int computer_ships_remaining = 5;
+    private int user_ships_remaining = 5;
+    private int computer_ships_remaining = 5;
 
 
-    public static void createGrid(){
+    public void createGrid(){
         for(int i = 0; i < grid.length; i++){
             for(int j = 0; j < grid[i].length; j++){
                 grid[i][j] = ' ';
@@ -19,7 +19,7 @@ public class Battleship {
         }
     }
 
-    public static void displayGrid(char[][] grid){
+    public void displayGrid(char[][] grid){
         int num_rows = grid.length;
         int num_cols = grid[0].length;
 
@@ -59,7 +59,7 @@ public class Battleship {
         System.out.print("\n");
     }
 
-    public static void placeShips(char player) {
+    public void placeShips(char player) {
         System.out.println("You have " + NUMBER_SHIPS + " ships to place.");
 
         int ships_placed = 0;
@@ -83,7 +83,7 @@ public class Battleship {
         }
     }
 
-    public static void placeComputerShips(){
+    public void placeComputerShips(){
         System.out.println("Computer is placing ships.");
 
         int ships_placed = 0;
@@ -103,7 +103,7 @@ public class Battleship {
     }
 
     // make sure the move is acceptable
-    private static boolean checkMove(int checkMoveX, int checkMoveY){
+    private boolean checkMove(int checkMoveX, int checkMoveY){
         // this method takes in two ints, the X and Y coordinates from either the player or computers ship placement
         // and makes sure that the coordinates are valid, and also that there is nothing there already.
         boolean goodMove = true;
@@ -113,7 +113,7 @@ public class Battleship {
         return goodMove;
     }
 
-    public static void playMove(int x, int y){
+    public void playMove(int x, int y){
         char target = grid[y][x];
 
         // evaluate and place the move
@@ -131,7 +131,7 @@ public class Battleship {
         }
     }
 
-    public static void playersMove(){
+    public void playersMove(){
         int user_x = -1;
         int user_y = -1;
 
@@ -150,7 +150,7 @@ public class Battleship {
 
     }
 
-    public static void computersMove(){
+    public void computersMove(){
         int computer_x = -1;
         int computer_y = -1;
         boolean valid_guess = false;
@@ -185,19 +185,7 @@ public class Battleship {
         }
     }
 
-    public static void main(String[] args){
-        System.out.println("Welcome to battleship!");
-        System.out.println();
-
-        // initialize the empty grid
-        createGrid();
-
-        // place the user's ships
-        placeShips('1');
-
-        // place the computer's ships
-        placeComputerShips();
-
+    public void playGame(){
         // display the grid
         displayGrid(grid);
 
@@ -218,6 +206,24 @@ public class Battleship {
         } else {
             System.out.println("You win!");
         }
+    }
+
+    public static void main(String[] args){
+        System.out.println("Welcome to battleship!");
+        System.out.println();
+
+        Battleship game = new Battleship();
+
+        // initialize the empty grid
+        game.createGrid();
+
+        // place the user's ships
+        game.placeShips('1');
+
+        // place the computer's ships
+        game.placeComputerShips();
+
+        game.playGame();
 
     }
 }
