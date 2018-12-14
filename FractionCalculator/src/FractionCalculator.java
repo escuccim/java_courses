@@ -38,6 +38,7 @@ public class FractionCalculator {
     }
 
     public static void printResult(Fraction fraction1, Fraction fraction2, Fraction result, char operation){
+        result.toLowestTerms();
         System.out.println(fraction1.toString() + " " + operation + " " + fraction2.toString() + " = " + result.toString());
     }
 

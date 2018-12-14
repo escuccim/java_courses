@@ -6,7 +6,7 @@ public class Battleship {
     private char[][] grid = new char[10][10];
     private static final int NUMBER_SHIPS = 5;
     private static Scanner input = new Scanner(System.in);
-    private static Random randomNumber = new Random(System.currentTimeMillis());
+    private Random randomNumber = new Random(System.currentTimeMillis());
     private int user_ships_remaining = 5;
     private int computer_ships_remaining = 5;
 
